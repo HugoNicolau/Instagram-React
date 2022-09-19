@@ -49,7 +49,7 @@ const [curtir, setCurtida] = React.useState(<ion-icon name="heart-outline" onCli
               <div class="curtidas">
                 <img src={props.curtidasimg} />
                 <div class="texto">
-                  Curtido por <strong>{props.curtidasnome}</strong> e <strong>outras {numerodelikes} pessoas</strong>
+                  Curtido por <strong>{props.curtidasnome}</strong> e <strong>outras {numerodelikes.toLocaleString('pt-br')} pessoas</strong>
                 </div>
               </div>
             </div>
