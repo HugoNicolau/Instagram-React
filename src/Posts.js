@@ -46,7 +46,7 @@ export default function Posts(){
     return (
         <div class="posts">
           
-            post.map((f) => <Post usuario={f.usuario} imagem={f.imagem} conteudo={f.conteudo} curtidasimg={f.curtidasimg} curtidasnome={f.curtidasnome} curtidasvalor={f.curtidasvalor}/>)
+            {post.map((f) => <Post usuario={f.usuario} imagem={f.imagem} conteudo={f.conteudo} curtidasimg={f.curtidasimg} curtidasnome={f.curtidasnome} curtidasvalor={f.curtidasvalor}/> )}
           
         </div>
     )
