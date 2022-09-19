@@ -1,4 +1,23 @@
+import React from "react"
+
 function Post(props){
+
+    const [salvei, setSave] = React.useState(props.savename)
+    function inserirSave(){
+        
+        setSave("bookmark")
+}
+let [numerodelikes, setLikes] = React.useState(props.curtidasvalor)
+const [curtir, setCurtida] = React.useState(<ion-icon name="heart-outline" onClick={inserirCurtida}></ion-icon>)
+    function inserirCurtida(){
+        
+        setCurtida(<ion-icon name="heart" onClick={tirarCurtida} class="curtido"></ion-icon>)
+        setLikes(numerodelikes+1);
+}
+    function tirarCurtida(){
+        setCurtida(<ion-icon name="heart-outline" onClick={inserirCurtida}></ion-icon>)
+        setLikes(numerodelikes);
+    }
     return (
         <div class="post">
             <div class="topo">
@@ -18,19 +37,19 @@ function Post(props){
             <div class="fundo">
               <div class="acoes">
                 <div>
-                  <ion-icon name="heart-outline"></ion-icon>
+                  {curtir}
                   <ion-icon name="chatbubble-outline"></ion-icon>
                   <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
                 <div>
-                  <ion-icon name="bookmark-outline"></ion-icon>
+                  <ion-icon name={salvei} onClick={inserirSave}></ion-icon>
                 </div>
               </div>
 
               <div class="curtidas">
                 <img src={props.curtidasimg} />
                 <div class="texto">
-                  Curtido por <strong>{props.curtidasnome}</strong> e <strong>outras {props.curtidasvalor} pessoas</strong>
+                  Curtido por <strong>{props.curtidasnome}</strong> e <strong>outras {numerodelikes} pessoas</strong>
                 </div>
               </div>
             </div>
@@ -40,13 +59,13 @@ function Post(props){
 
 export default function Posts(){
     const post =[
-        {usuario:"meowed" , imagem:"assets/img/meowed.svg", conteudo:"assets/img/gato-telefone.svg", curtidasimg:"assets/img/respondeai.svg", curtidasnome:"respondeai", curtidasvalor:101.523 },
-        {usuario:"barked" , imagem:"assets/img/barked.svg", conteudo:"assets/img/dog.svg", curtidasimg:"assets/img/adorable_animals.svg", curtidasnome:"adorable_animals", curtidasvalor:99.159 }
+        {usuario:"meowed" , imagem:"assets/img/meowed.svg", conteudo:"assets/img/gato-telefone.svg", curtir:"heart-outline",  curtidasimg:"assets/img/respondeai.svg", curtidasnome:"respondeai", curtidasvalor:101523, savename:"bookmark-outline"},
+        {usuario:"barked" , imagem:"assets/img/barked.svg", conteudo:"assets/img/dog.svg", curtir:"heart-outline", curtidasimg:"assets/img/adorable_animals.svg", curtidasnome:"adorable_animals", curtidasvalor:99159, savename:"bookmark-outline" }
     ]
     return (
         <div class="posts">
           
-            {post.map((f) => <Post usuario={f.usuario} imagem={f.imagem} conteudo={f.conteudo} curtidasimg={f.curtidasimg} curtidasnome={f.curtidasnome} curtidasvalor={f.curtidasvalor}/> )}
+            {post.map((f) => <Post usuario={f.usuario} imagem={f.imagem} conteudo={f.conteudo} curtir={f.curtir} curtidasimg={f.curtidasimg} curtidasnome={f.curtidasnome} curtidasvalor={f.curtidasvalor} savename={f.savename}/> )}
           
         </div>
     )
